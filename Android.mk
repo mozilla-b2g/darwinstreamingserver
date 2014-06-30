@@ -65,7 +65,7 @@ endef
 #
 include $(CLEAR_VARS)
 LOCAL_MODULE := DarwinStreamingServer
-LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_TAGS := eng
 
 LOCAL_C_INCLUDES := \
   $(addprefix $(DARWIN_TOPSRCDIR)/, \
@@ -234,13 +234,20 @@ samples := \
   sample_h264_300kbit.mp4 \
   $(empty)
 
-$(call darwin-add-prebilt-files-to-module-path, \
-  $(foreach s,$(samples),$(s):$(s)), \
-  $(DARWIN_INSTALLED_MEDIA_DIR), \
-  DATA, \
-  samples \
-)
-
-$(call darwin-add-to-targets,$(samples),sample)
-
 include $(call first-makefiles-under,$(LOCAL_PATH))
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := streamingserver.xml
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := streamingserver.xml-ANDROID
+LOCAL_MODULE_PATH  := $(DARWIN_INSTALLED_ETC_DIR)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE       := sample_h264_100kbit.mp4
+LOCAL_MODULE_TAGS  := optional eng
+LOCAL_MODULE_CLASS := DATA
+LOCAL_SRC_FILES    := $(LOCAL_MODULE)
+LOCAL_MODULE_PATH  := $(DARWIN_INSTALLED_MEDIA_DIR)
+include $(BUILD_PREBUILT)
