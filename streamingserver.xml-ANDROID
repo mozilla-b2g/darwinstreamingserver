@@ -121,7 +121,7 @@
 	<PREF NAME="bind_ip_addr">0</PREF>
 
 	<!-- Path to the root folder for movies. -->
-	<PREF NAME="movie_folder">/system/media/streaming</PREF>
+	<PREF NAME="movie_folder">/data/misc/streaming/media</PREF>
 
 	<!-- Maximum amount of bandwidth the server is allowed to serve. -->
 	<!-- value is in kilobits/sec. While this limit is exceeded, new client requests. -->
